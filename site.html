@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberShield — Carreira em Cibersegurança</title>
+<meta name="description" content="Descubra a carreira em Cibersegurança: competências, áreas de atuação (Red Team, Blue Team, Perícia Forense) e como começar.">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberShield – Carreira em Cibersegurança</title>
+    <meta name="description" content="Descubra a carreira em Cibersegurança: competências, áreas de atuação (F...">
+
+    <!-- Favicon (Ícone da aba do navegador) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+
+    <!-- Meta Tags para Redes Sociais (Open Graph) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="CyberShield — Carreira em Cibersegurança">
+    <meta property="og:description" content="Descubra a carreira em Cibersegurança: competências, áreas de atuação e como começar.">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+...
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Ícones -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<!-- Fontes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg-deep:#0a0e14;
+    --bg-panel:#0f1620;
+    --bg-panel-2:#131b26;
+    --border-soft:#1e2733;
+    --text-primary:#e6edf3;
+    --text-muted:#8b95a5;
+    --cyan:#00e5ff;
+    --cyan-dim:#0a4a56;
+    --red:#ff4d5e;
+    --red-dim:#4a1620;
+    --green:#39ff8f;
+    --green-dim:#0e3a26;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; scroll-padding-top:80px; }
+
+  body{
+    background-color:var(--bg-deep);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(0,229,255,0.07), transparent 40%),
+      radial-gradient(circle at 85% 20%, rgba(57,255,143,0.05), transparent 35%);
+    color:var(--text-primary);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+  }
+
+  h1,h2,h3,h4, .brand{
+    font-family:'Space Grotesk', sans-serif;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{ font-family:'JetBrains Mono', monospace; }
+
+  a{ color:var(--cyan); }
+
+  ::selection{ background:var(--cyan-dim); color:#fff; }
+
+  /* Foco visível para acessibilidade */
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
+    outline:2px solid var(--cyan);
+    outline-offset:2px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  /* ---------- NAVBAR ---------- */
+  .navbar{
+    background:rgba(10,14,20,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border-soft);
+  }
+  .navbar-brand{
+    font-weight:700;
+    font-size:1.35rem;
+    color:var(--text-primary) !important;
+  }
+  .navbar-brand .bracket{ color:var(--cyan); }
+  .nav-link{
+    color:var(--text-muted) !important;
+    font-weight:500;
+    margin-left:1.25rem;
+    position:relative;
+    transition:color .2s ease;
+  }
+  .nav-link:hover, .nav-link:focus-visible{ color:var(--text-primary) !important; }
+  .nav-link::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:-4px;
+    width:0; height:2px;
+    background:var(--cyan);
+    transition:width .25s ease;
+  }
+  .nav-link:hover::after{ width:100%; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:7.5rem 0 5rem;
+    border-bottom:1px solid var(--border-soft);
+  }
+  .hero .eyebrow{
+    color:var(--cyan);
+    font-family:'JetBrains Mono', monospace;
+    font-size:.85rem;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem, 5vw, 3.4rem);
+    font-weight:700;
+    line-height:1.1;
+    margin:.75rem 0 1.25rem;
+  }
+  .hero p.lead{
+    color:var(--text-muted);
+    font-size:1.15rem;
+    max-width:34rem;
+  }
+  .btn-cyan{
+    background:var(--cyan);
+    border:1px solid var(--cyan);
+    color:#03151a;
+    font-weight:600;
+    padding:.7rem 1.6rem;
+    border-radius:6px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-cyan:hover, .btn-cyan:focus-visible{
+    color:#03151a;
+    box-shadow:0 0 24px rgba(0,229,255,.45);
+    transform:translateY(-1px);
+  }
+  .btn-outline-soft{
+    border:1px solid var(--border-soft);
+    color:var(--text-primary);
+    padding:.7rem 1.6rem;
+    border-radius:6px;
+    font-weight:500;
+  }
+  .btn-outline-soft:hover{
+    border-color:var(--cyan);
+    color:var(--cyan);
+  }
+
+  /* Terminal decorativo do hero */
+  .terminal{
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+  }
+  .terminal-bar{
+    display:flex;
+    align-items:center;
+    gap:.4rem;
+    padding:.65rem .9rem;
+    background:var(--bg-panel-2);
+    border-bottom:1px solid var(--border-soft);
+  }
+  .terminal-dot{ width:10px; height:10px; border-radius:50%; }
+  .terminal-body{
+    padding:1.25rem 1.4rem 1.6rem;
+    font-family:'JetBrains Mono', monospace;
+    font-size:.88rem;
+    color:#c7d1db;
+    min-height:230px;
+  }
+  .terminal-body .line{ margin-bottom:.55rem; white-space:pre-wrap; }
+  .terminal-prompt{ color:var(--green); }
+  .terminal-path{ color:var(--cyan); }
+  .cursor{
+    display:inline-block;
+    width:8px; height:1.05em;
+    background:var(--cyan);
+    vertical-align:text-bottom;
+    animation:blink 1s step-start infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  /* ---------- SECÇÕES ---------- */
+  section{ padding:5rem 0; }
+  .section-title{
+    font-size:clamp(1.7rem, 3vw, 2.2rem);
+    font-weight:700;
+    margin-bottom:.75rem;
+  }
+  .section-sub{
+    color:var(--text-muted);
+    max-width:42rem;
+  }
+  .section-alt{
+    background:linear-gradient(180deg, transparent, rgba(255,255,255,.015) 15%, rgba(255,255,255,.015) 85%, transparent);
+    border-top:1px solid var(--border-soft);
+    border-bottom:1px solid var(--border-soft);
+  }
+
+  /* Competências */
+  .skill-item{
+    display:flex;
+    gap:1rem;
+    padding:1.1rem 0;
+    border-bottom:1px solid var(--border-soft);
+  }
+  .skill-item:last-child{ border-bottom:none; }
+  .skill-icon{
+    width:42px; height:42px;
+    flex:0 0 auto;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:8px;
+    color:var(--cyan);
+    font-size:1.15rem;
+  }
+  .skill-item h3{ font-size:1.05rem; margin-bottom:.2rem; }
+  .skill-item p{ color:var(--text-muted); margin:0; font-size:.95rem; }
+
+  /* Cards das áreas de atuação */
+  .area-card{
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:10px;
+    padding:1.9rem 1.7rem;
+    height:100%;
+    border-left:3px solid var(--accent, var(--cyan));
+    transition:transform .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .area-card:hover{
+    transform:translateY(-4px);
+    background:var(--bg-panel-2);
+  }
+  .area-card .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.75rem;
+    color:var(--accent, var(--cyan));
+    text-transform:lowercase;
+  }
+  .area-card h3{
+    font-size:1.3rem;
+    margin:.4rem 0 .9rem;
+  }
+  .area-card p{
+    color:var(--text-muted);
+    font-size:.95rem;
+    margin-bottom:1rem;
+  }
+  .area-card ul{
+    list-style:none;
+    padding:0; margin:0;
+    font-size:.88rem;
+    color:var(--text-muted);
+  }
+  .area-card ul li{
+    padding-left:1.1rem;
+    position:relative;
+    margin-bottom:.4rem;
+  }
+  .area-card ul li::before{
+    content:"▸";
+    position:absolute;
+    left:0;
+    color:var(--accent, var(--cyan));
+  }
+  .area-card.red{ --accent:var(--red); }
+  .area-card.blue{ --accent:var(--cyan); }
+  .area-card.forensic{ --accent:var(--green); }
+  .area-icon{
+    width:46px; height:46px;
+    border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    background:color-mix(in srgb, var(--accent) 14%, transparent);
+    color:var(--accent);
+    font-size:1.3rem;
+    margin-bottom:1rem;
+  }
+
+  /* Formulário */
+  .form-panel{
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:12px;
+    padding:2.2rem;
+  }
+  .form-label{
+    color:var(--text-muted);
+    font-size:.88rem;
+    font-weight:500;
+    margin-bottom:.35rem;
+  }
+  .form-control, .form-select{
+    background:var(--bg-panel-2);
+    border:1px solid var(--border-soft);
+    color:var(--text-primary);
+    padding:.65rem .85rem;
+    border-radius:7px;
+  }
+  .form-control:focus, .form-select:focus{
+    background:var(--bg-panel-2);
+    color:var(--text-primary);
+    border-color:var(--cyan);
+    box-shadow:0 0 0 .2rem rgba(0,229,255,.15);
+  }
+  .form-control::placeholder{ color:#57616f; }
+  .form-select option{ background:var(--bg-panel-2); }
+
+  #formStatus{ font-size:.9rem; }
+
+  .form-alert{
+    display:none;
+    align-items:flex-start;
+    gap:.7rem;
+    padding:.85rem 1rem;
+    border-radius:8px;
+    font-size:.9rem;
+    margin-top:1.25rem;
+  }
+  .form-alert.show{ display:flex; }
+  .form-alert.success{
+    background:var(--green-dim);
+    border:1px solid var(--green);
+    color:var(--green);
+  }
+  .form-alert.error{
+    background:var(--red-dim);
+    border:1px solid var(--red);
+    color:var(--red);
+  }
+  .form-alert i{ font-size:1.1rem; margin-top:.1rem; }
+
+  /* Dicas de segurança */
+  .tip-card{
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:10px;
+    padding:1.4rem 1.3rem;
+    height:100%;
+  }
+  .tip-card i{
+    color:var(--cyan);
+    font-size:1.3rem;
+    margin-bottom:.6rem;
+    display:block;
+  }
+  .tip-card h3{
+    font-size:1rem;
+    margin-bottom:.35rem;
+  }
+  .tip-card p{
+    color:var(--text-muted);
+    font-size:.88rem;
+    margin:0;
+  }
+
+  /* Rodapé */
+  footer{
+    border-top:1px solid var(--border-soft);
+    padding:2rem 0;
+    color:var(--text-muted);
+    font-size:.88rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-md fixed-top py-3">
+  <div class="container">
+    <a class="navbar-brand" href="#topo"><span class="bracket">&lt;/&gt;</span> CyberShffield</a>
+    <button class="navbar-toggler navbar-dark border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Alternar navegação">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+        <li class="nav-item"><a class="nav-link" href="#areas">Áreas de Atuação</a></li>
+        <li class="nav-item"><a class="nav-link" href="#dicas">Dicas de Segurança</a></li>
+        <li class="nav-item"><a class="nav-link" href="#feedback">Feedback</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="topo">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <p class="eyebrow mono">carreira // tecnologia da segurança</p>
+        <h1>Proteger o mundo digital começa com uma decisão.</h1>
+        <p class="lead">Cibersegurança é uma das áreas de tecnologia que mais cresce, com procura constante por profissionais capazes de defender sistemas, redes e dados contra ameaças cada vez mais sofisticadas.</p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="#areas" class="btn btn-cyan">Ver áreas de atuação</a>
+          <a href="#sobre" class="btn btn-outline-soft">O que faz este profissional?</a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="terminal-dot" style="background:#ff5f56;"></span>
+            <span class="terminal-dot" style="background:#ffbd2e;"></span>
+            <span class="terminal-dot" style="background:#27c93f;"></span>
+            <span class="mono ms-2" style="color:var(--text-muted); font-size:.8rem;">analista@cybershield: ~</span>
+          </div>
+          <div class="terminal-body" id="terminalBody" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== SECÇÃO 1: O QUE FAZ ===== -->
+<section id="sobre">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <h2 class="section-title">O que faz um profissional de Cibersegurança</h2>
+        <p class="section-sub">Este profissional protege sistemas, redes e informações contra acessos não autorizados, falhas e ataques. Numa altura em que empresas e governos dependem totalmente de infraestrutura digital, esta função deixou de ser opcional — tornou-se essencial para a continuidade de qualquer negócio.</p>
+        <p class="section-sub mt-3">O trabalho combina raciocínio técnico com investigação constante: novas vulnerabilidades surgem todos os dias, e manter-se atualizado é parte do ofício.</p>
+      </div>
+      <div class="col-lg-7">
+        <div class="skill-item">
+          <div class="skill-icon"><i class="bi bi-diagram-3"></i></div>
+          <div>
+            <h3>Redes de Computadores</h3>
+            <p>Compreender como os dados circulam — protocolos, firewalls e segmentação — é a base para identificar comportamentos anómalos.</p>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="bi bi-terminal"></i></div>
+          <div>
+            <h3>Linux</h3>
+            <p>A maioria das ferramentas e servidores de segurança corre sobre Linux; domínio de linha de comandos é indispensável.</p>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="bi bi-shield-lock"></i></div>
+          <div>
+            <h3>Criptografia</h3>
+            <p>Entender como os dados são cifrados e protegidos em trânsito e em repouso é essencial para desenhar defesas eficazes.</p>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-icon"><i class="bi bi-bug"></i></div>
+          <div>
+            <h3>Análise de Vulnerabilidades</h3>
+            <p>Identificar falhas antes que sejam exploradas — através de scans, auditorias e testes controlados — reduz o risco real de incidentes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECÇÃO 2: ÁREAS DE ATUAÇÃO ===== -->
+<section id="areas" class="section-alt">
+  <div class="container">
+    <h2 class="section-title">Áreas de Atuação</h2>
+    <p class="section-sub mb-5">A Cibersegurança não é uma única profissão — é um conjunto de especializações. Estas são três das frentes mais procuradas no mercado.</p>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="area-card red">
+          <div class="area-icon"><i class="bi bi-crosshair"></i></div>
+          <p class="tag mono">ataque</p>
+          <h3>Red Team</h3>
+          <p>Simula ataques reais para testar as defesas de uma organização antes que um agente malicioso o faça.</p>
+          <ul>
+            <li>Testes de invasão (pentests)</li>
+            <li>Identificação de falhas exploráveis</li>
+            <li>Engenharia social e simulações</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="area-card blue">
+          <div class="area-icon"><i class="bi bi-shield-check"></i></div>
+          <p class="tag mono">defesa</p>
+          <h3>Blue Team</h3>
+          <p>Monitoriza e defende a infraestrutura em tempo real, respondendo a incidentes assim que surgem.</p>
+          <ul>
+            <li>Monitorização contínua (SOC)</li>
+            <li>Resposta a incidentes</li>
+            <li>Hardening de sistemas e redes</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="area-card forensic">
+          <div class="area-icon"><i class="bi bi-search"></i></div>
+          <p class="tag mono">investigação</p>
+          <h3>Perícia Forense</h3>
+          <p>Investiga incidentes já ocorridos, reconstruindo o que aconteceu através da análise de dados e evidências digitais.</p>
+          <ul>
+            <li>Análise pós-incidente</li>
+            <li>Preservação de evidências</li>
+            <li>Relatórios técnicos e periciais</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECÇÃO EXTRA: DICAS DE SEGURANÇA ===== -->
+<section id="dicas">
+  <div class="container">
+    <h2 class="section-title">Dicas rápidas de segurança</h2>
+    <p class="section-sub mb-5">Boas práticas simples que qualquer pessoa — não só profissionais da área — deveria aplicar no dia a dia.</p>
+
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-3">
+        <div class="tip-card">
+          <i class="bi bi-key"></i>
+          <h3>Palavras-passe fortes</h3>
+          <p>Use combinações longas e únicas para cada serviço, idealmente com um gestor de palavras-passe.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="tip-card">
+          <i class="bi bi-shield-lock"></i>
+          <h3>Ative a autenticação em dois fatores</h3>
+          <p>O 2FA impede o acesso a contas mesmo que a palavra-passe seja descoberta.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="tip-card">
+          <i class="bi bi-envelope-exclamation"></i>
+          <h3>Desconfie de e-mails suspeitos</h3>
+          <p>Verifique sempre o remetente antes de clicar em links ou abrir anexos inesperados.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="tip-card">
+          <i class="bi bi-arrow-repeat"></i>
+          <h3>Mantenha tudo atualizado</h3>
+          <p>Atualizações corrigem falhas conhecidas — adiá-las deixa a porta aberta para ataques.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECÇÃO 3: FEEDBACK ===== -->
+<section id="feedback">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h2 class="section-title text-center">Deixe o seu feedback</h2>
+        <p class="section-sub text-center mx-auto mb-5">Está a considerar esta carreira ou já atua na área? Conte-nos o seu nível de interesse e o que gostaria de ver por aqui.</p>
+
+        <div class="form-panel">
+      
+          <form id="feedbackForm" action="https://formspree.io/f/mwlpokwq" method="POST">
+            <input type="hidden" name="_subject" value="Novo feedback — CyberShield">
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="O seu nome" required>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="email" name="_replyto" placeholder="voce@exemplo.com" required>
+              </div>
+              <div class="col-12">
+                <label for="nivel" class="form-label">Nível de conhecimento / interesse</label>
+                <select class="form-select" id="nivel" name="nivel" required>
+                  <option value="" selected disabled>Selecione uma opção</option>
+                  <option value="Curioso(a) / iniciante">Curioso(a) / iniciante</option>
+                  <option value="Estudante em formação">Estudante em formação</option>
+                  <option value="Profissional em transição de carreira">Profissional em transição de carreira</option>
+                  <option value="Já atuo na área">Já atuo na área</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label for="mensagem" class="form-label">Mensagem / Feedback</label>
+                <textarea class="form-control" id="mensagem" name="mensagem" rows="4" placeholder="Partilhe a sua opinião, dúvida ou sugestão..." required></textarea>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between mt-4 flex-wrap gap-3">
+              <button type="submit" class="btn btn-cyan">Enviar feedback</button>
+              <span id="formStatus" class="mono" aria-live="polite"></span>
+            </div>
+
+            <div id="formAlert" class="form-alert" role="alert" aria-live="polite">
+              <i class="bi"></i>
+              <span id="formAlertText"></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RODAPÉ ===== -->
+<footer>
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+    <span>&copy; 2026 CyberShield. Conteúdo educativo sobre carreira em Cibersegurança.</span>
+    <span class="mono" style="color:var(--text-muted);">feito com HTML · CSS · Bootstrap 5</span>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // ---- Efeito de digitação no terminal do hero ----
+  const terminalLines = [
+    { prompt: "analista@sec", path: "~$", text: " scan --target rede-corporativa" },
+    { prompt: "", path: "", text: "[OK] 0 vulnerabilidades críticas encontradas" },
+    { prompt: "", path: "", text: "[OK] firewall: ativo" },
+    { prompt: "analista@sec", path: "~$", text: " status --equipa blue-team" },
+    { prompt: "", path: "", text: "monitorização: em tempo real" },
+  ];
+
+  const terminalBody = document.getElementById('terminalBody');
+
+  function buildLineHTML(line, textSoFar){
+    let html = "";
+    if(line.prompt) html += `<span class="terminal-prompt">${line.prompt}</span> <span class="terminal-path">${line.path}</span>`;
+    html += textSoFar;
+    return html;
+  }
+
+  async function typeTerminal(){
+    for(const line of terminalLines){
+      const div = document.createElement('div');
+      div.className = 'line';
+      terminalBody.appendChild(div);
+
+      let shown = "";
+      for(let i = 0; i < line.text.length; i++){
+        shown += line.text[i];
+        div.innerHTML = buildLineHTML(line, shown) + '<span class="cursor"></span>';
+        await new Promise(r => setTimeout(r, 18));
+      }
+      div.innerHTML = buildLineHTML(line, shown);
+      await new Promise(r => setTimeout(r, 260));
+    }
+    const finalCursor = document.createElement('div');
+    finalCursor.className = 'line';
+    finalCursor.innerHTML = '<span class="terminal-prompt">analista@sec</span> <span class="terminal-path">~$</span> <span class="cursor"></span>';
+    terminalBody.appendChild(finalCursor);
+  }
+
+  // Respeita utilizadores que preferem menos animação
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReducedMotion){
+    terminalLines.forEach(line => {
+      const div = document.createElement('div');
+      div.className = 'line';
+      div.innerHTML = buildLineHTML(line, line.text);
+      terminalBody.appendChild(div);
+    });
+  } else {
+    typeTerminal();
+  }
+
+  // ---- Fecha o menu mobile ao clicar num link ----
+  document.querySelectorAll('#navMenu .nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const menu = document.getElementById('navMenu');
+      if(menu.classList.contains('show')){
+        bootstrap.Collapse.getOrCreateInstance(menu).hide();
+      }
+    });
+  });
+
+  // ---- Envio do formulário via Fetch (AJAX) para Formspree ----
+  const form = document.getElementById('feedbackForm');
+  const status = document.getElementById('formStatus');
+  const formAlert = document.getElementById('formAlert');
+  const formAlertText = document.getElementById('formAlertText');
+  const formAlertIcon = formAlert.querySelector('i');
+
+  // Mostra uma mensagem de sucesso ou erro no formulário
+  function showFormAlert(type, message){
+    formAlert.classList.remove('success', 'error');
+    formAlert.classList.add(type, 'show');
+    formAlertIcon.className = type === 'success' ? 'bi bi-check-circle-fill' : 'bi bi-x-circle-fill';
+    formAlertText.textContent = message;
+  }
+
+ form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  try {
+    // Coloque a sua requisição fetch aqui se houver
+    
+    if (response.ok) {
+      status.textContent = '';
+      showFormAlert('success', 'Feedback enviado com sucesso! Obrigado por partilhar a sua opinião.');
+      form.reset();
+    } else {
+      status.textContent = '';
+      showFormAlert('error', 'Não foi possível enviar o feedback. Tente novamente.');
+    }
+  } catch(err) {
+    status.textContent = '';
+    showFormAlert('error', 'Erro de ligação. Verifique o endpoint do formulário.');
+  } finally {
+    submitBtn.textContent = 'Enviar feedback';
+  }
+});
+</script>
+
+</body>
+</html>
+
