@@ -3,15 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CyberShield — Carreira em Cibersegurança</title>
-<meta name="description" content="Descubra a carreira em Cibersegurança: competências, áreas de atuação (Red Team, Blue Team, Perícia Forense) e como começar.">
+<title>CyberShield: carreira em cibersegurança</title>
+<meta name="description" content="Panorama da carreira em cibersegurança: o que a pessoa faz, quanto o mercado paga e o que pensa quem se interessa pela área. Projeto de extensão.">
 
-<!-- Favicon (Ícone da aba do navegador) -->
-<link rel="icon" href="https://fav.farm/🛡️">
-<!-- Meta Tags para Redes Sociais (Open Graph) -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="CyberShield — Carreira em Cibersegurança">
-<meta property="og:description" content="Descubra a carreira em Cibersegurança: competências, áreas de atuação e como começar.">
+<!-- Aplica tema e tamanho de fonte salvos antes da renderização (evita "piscar") -->
+<script>
+  (function(){
+    var t = null, f = null;
+    try{ t = localStorage.getItem('cs-theme'); f = localStorage.getItem('cs-fs'); }catch(e){}
+    if(['dark','light','contrast'].indexOf(t) === -1){
+      t = (window.matchMedia && matchMedia('(prefers-contrast: more)').matches) ? 'contrast' : 'dark';
+    }
+    var r = document.documentElement;
+    r.setAttribute('data-theme', t);
+    r.setAttribute('data-bs-theme', t === 'light' ? 'light' : 'dark');
+    if(f === '1' || f === '2') r.setAttribute('data-fs', f);
+  })();
+</script>
 
 <!-- Bootstrap 5 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -22,6 +30,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
+  /* ---------- TEMAS ----------
+     escuro (padrão) | claro | alto contraste — trocados pelos botões da barra */
   :root{
     --bg-deep:#0a0e14;
     --bg-panel:#0f1620;
@@ -35,7 +45,52 @@
     --red-dim:#4a1620;
     --green:#39ff8f;
     --green-dim:#0e3a26;
+    --nav-bg:rgba(10,14,20,0.85);
+    --glow-1:rgba(0,229,255,0.07);
+    --glow-2:rgba(57,255,143,0.05);
+    --btn-text:#03151a;
+    --placeholder:#7d8897;
   }
+  :root[data-theme="light"]{
+    --bg-deep:#f6f8fb;
+    --bg-panel:#ffffff;
+    --bg-panel-2:#eef2f7;
+    --border-soft:#c4cfdb;
+    --text-primary:#10202e;
+    --text-muted:#44546a;
+    --cyan:#006478;
+    --cyan-dim:#bfe9f1;
+    --red:#b3182b;
+    --red-dim:#fde8ea;
+    --green:#0a6b3a;
+    --green-dim:#dff5e8;
+    --nav-bg:rgba(246,248,251,0.92);
+    --glow-1:rgba(0,100,120,0.07);
+    --glow-2:rgba(10,107,58,0.05);
+    --btn-text:#ffffff;
+    --placeholder:#5d6b7a;
+  }
+  :root[data-theme="contrast"]{
+    --bg-deep:#000000;
+    --bg-panel:#000000;
+    --bg-panel-2:#121212;
+    --border-soft:#ffffff;
+    --text-primary:#ffffff;
+    --text-muted:#e2e2e2;
+    --cyan:#ffe600;
+    --cyan-dim:#5a5200;
+    --red:#ff9a9a;
+    --red-dim:#2b0000;
+    --green:#8dffb8;
+    --green-dim:#002b12;
+    --nav-bg:#000000;
+    --glow-1:transparent;
+    --glow-2:transparent;
+    --btn-text:#000000;
+    --placeholder:#d0d0d0;
+  }
+  html[data-fs="1"]{ font-size:112.5%; }
+  html[data-fs="2"]{ font-size:125%; }
 
   *{ box-sizing:border-box; }
 
@@ -44,8 +99,8 @@
   body{
     background-color:var(--bg-deep);
     background-image:
-      radial-gradient(circle at 15% 0%, rgba(0,229,255,0.07), transparent 40%),
-      radial-gradient(circle at 85% 20%, rgba(57,255,143,0.05), transparent 35%);
+      radial-gradient(circle at 15% 0%, var(--glow-1), transparent 40%),
+      radial-gradient(circle at 85% 20%, var(--glow-2), transparent 35%);
     color:var(--text-primary);
     font-family:'Inter', sans-serif;
     line-height:1.6;
@@ -60,7 +115,7 @@
 
   a{ color:var(--cyan); }
 
-  ::selection{ background:var(--cyan-dim); color:#fff; }
+  ::selection{ background:var(--cyan-dim); color:var(--text-primary); }
 
   /* Foco visível para acessibilidade */
   a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible{
@@ -74,7 +129,7 @@
 
   /* ---------- NAVBAR ---------- */
   .navbar{
-    background:rgba(10,14,20,0.85);
+    background:var(--nav-bg);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--border-soft);
   }
@@ -87,7 +142,7 @@
   .nav-link{
     color:var(--text-muted) !important;
     font-weight:500;
-    margin-left:1.25rem;
+    margin-left:.9rem;
     position:relative;
     transition:color .2s ease;
   }
@@ -126,14 +181,14 @@
   .btn-cyan{
     background:var(--cyan);
     border:1px solid var(--cyan);
-    color:#03151a;
+    color:var(--btn-text);
     font-weight:600;
     padding:.7rem 1.6rem;
     border-radius:6px;
     transition:transform .15s ease, box-shadow .15s ease;
   }
   .btn-cyan:hover, .btn-cyan:focus-visible{
-    color:#03151a;
+    color:var(--btn-text);
     box-shadow:0 0 24px rgba(0,229,255,.45);
     transform:translateY(-1px);
   }
@@ -151,6 +206,8 @@
 
   /* Terminal decorativo do hero */
   .terminal{
+    /* o terminal é decorativo e mantém sempre as cores escuras, em qualquer tema */
+    --cyan:#00e5ff; --green:#39ff8f; --bg-panel:#0f1620; --bg-panel-2:#131b26; --border-soft:#1e2733; --text-muted:#8b95a5;
     background:var(--bg-panel);
     border:1px solid var(--border-soft);
     border-radius:10px;
@@ -308,7 +365,7 @@
     border-color:var(--cyan);
     box-shadow:0 0 0 .2rem rgba(0,229,255,.15);
   }
-  .form-control::placeholder{ color:#57616f; }
+  .form-control::placeholder{ color:var(--placeholder); }
   .form-select option{ background:var(--bg-panel-2); }
 
   #formStatus{ font-size:.9rem; }
@@ -366,24 +423,176 @@
     color:var(--text-muted);
     font-size:.88rem;
   }
+
+  /* ---------- ACESSIBILIDADE ---------- */
+  .skip-link{
+    position:absolute; left:-9999px; top:0;
+    background:var(--cyan); color:var(--btn-text);
+    padding:.6rem 1rem; z-index:2000;
+    border-radius:0 0 6px 0; font-weight:600; text-decoration:none;
+  }
+  .skip-link:focus{ left:0; }
+  #conteudo:focus{ outline:none; }
+
+  .a11y-tools{
+    display:flex; align-items:center; gap:.35rem;
+    margin-left:1rem; padding-left:1rem;
+    border-left:1px solid var(--border-soft);
+  }
+  .a11y-btn{
+    background:transparent;
+    border:1px solid var(--border-soft);
+    color:var(--text-primary);
+    min-width:38px; height:38px;
+    border-radius:6px;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size:.95rem; font-weight:600; line-height:1;
+    cursor:pointer;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .a11y-btn:hover{ border-color:var(--cyan); color:var(--cyan); }
+  .a11y-btn[aria-pressed="true"]{ background:var(--cyan); border-color:var(--cyan); color:var(--btn-text); }
+  .a11y-btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .a11y-sep{ width:1px; height:22px; background:var(--border-soft); margin:0 .2rem; }
+  @media (max-width: 991.98px){
+    .a11y-tools{ margin:.9rem 0 .25rem; padding:0; border-left:none; }
+  }
+
+  /* Alto contraste: bordas mais grossas e links sublinhados */
+  :root[data-theme="contrast"] a:not(.btn):not(.nav-link):not(.navbar-brand):not(.skip-link){ text-decoration:underline; }
+  :root[data-theme="contrast"] .area-card,
+  :root[data-theme="contrast"] .tip-card,
+  :root[data-theme="contrast"] .form-panel,
+  :root[data-theme="contrast"] .stat-card,
+  :root[data-theme="contrast"] .chart-card,
+  :root[data-theme="contrast"] .pipeline li,
+  :root[data-theme="contrast"] .terminal{ border-width:2px; border-color:#fff; }
+  :root[data-theme="contrast"] .form-control,
+  :root[data-theme="contrast"] .form-select{ border-color:#fff; }
+
+  /* ---------- MERCADO / RESULTADOS ---------- */
+  sup a{ text-decoration:none; font-size:.78em; }
+  .stat-card{
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:10px;
+    padding:1.4rem 1.3rem;
+    height:100%;
+  }
+  .stat-value{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(1.5rem, 3vw, 2rem);
+    font-weight:700;
+    color:var(--cyan);
+    line-height:1.15;
+  }
+  .stat-label{ color:var(--text-muted); font-size:.9rem; margin:.4rem 0 0; }
+
+  .chart-card{
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:10px;
+    padding:1.5rem;
+    height:100%;
+  }
+  .chart-card h3{ font-size:1.05rem; margin-bottom:.25rem; }
+  .chart-note{ color:var(--text-muted); font-size:.84rem; margin-bottom:1rem; }
+  .chart-box{ position:relative; height:300px; }
+
+  .data-table{ width:100%; border-collapse:collapse; font-size:.88rem; margin-top:.6rem; }
+  .data-table th, .data-table td{ padding:.5rem .55rem; border-bottom:1px solid var(--border-soft); text-align:right; }
+  .data-table th:first-child, .data-table td:first-child{ text-align:left; }
+  .data-table thead th{ color:var(--text-muted); font-weight:600; font-size:.8rem; }
+  details summary{ cursor:pointer; color:var(--cyan); font-size:.88rem; margin-top:1rem; }
+
+  .btn-tool{
+    background:transparent;
+    border:1px solid var(--border-soft);
+    color:var(--text-primary);
+    padding:.55rem 1.1rem;
+    border-radius:6px;
+    font-size:.9rem; font-weight:500;
+  }
+  .btn-tool:hover{ border-color:var(--cyan); color:var(--cyan); }
+  .btn-tool:disabled{ opacity:.45; }
+
+  .data-banner{
+    display:flex; align-items:flex-start; gap:.7rem;
+    padding:.85rem 1rem; border-radius:8px;
+    font-size:.9rem; margin-top:1.25rem;
+    background:var(--bg-panel-2);
+    border:1px dashed var(--cyan);
+  }
+  .data-banner i{ font-size:1.1rem; margin-top:.1rem; }
+  .data-banner.real{ border:1px solid var(--green); color:var(--green); background:var(--green-dim); }
+  .data-banner.error{ border:1px solid var(--red); color:var(--red); background:var(--red-dim); }
+
+  .quality-list{
+    display:grid; grid-template-columns:1fr auto;
+    gap:.4rem 1rem; margin:0; font-size:.9rem;
+  }
+  .quality-list dt{ font-weight:400; color:var(--text-muted); }
+  .quality-list dd{ margin:0; text-align:right; font-family:'JetBrains Mono', monospace; }
+
+  .pipeline{
+    counter-reset:step; list-style:none; padding:0; margin:0;
+    display:grid; gap:1rem;
+    grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+  }
+  .pipeline li{
+    counter-increment:step;
+    background:var(--bg-panel);
+    border:1px solid var(--border-soft);
+    border-radius:10px;
+    padding:1.1rem 1.1rem 1.2rem;
+  }
+  .pipeline li::before{
+    content:"0" counter(step);
+    font-family:'JetBrains Mono', monospace;
+    color:var(--cyan); font-size:.85rem;
+    display:block; margin-bottom:.3rem;
+  }
+  .pipeline h4{ font-size:1rem; margin-bottom:.3rem; }
+  .pipeline p{ color:var(--text-muted); font-size:.86rem; margin:0; }
+
+  .form-check-input{ background-color:var(--bg-panel-2); border-color:var(--text-muted); }
+  .form-check-input:checked{ background-color:var(--cyan); border-color:var(--cyan); }
+  .form-check-label{ color:var(--text-muted); font-size:.88rem; }
+
+  .ref-list{ padding-left:1.4rem; color:var(--text-muted); font-size:.92rem; }
+  .ref-list li{ margin-bottom:.9rem; }
+  .ref-list li:target{ color:var(--text-primary); }
 </style>
 </head>
 <body>
 
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+
 <!-- ===== NAVBAR ===== -->
-<nav class="navbar navbar-expand-md fixed-top py-3">
+<nav class="navbar navbar-expand-lg fixed-top py-3" aria-label="Navegação principal">
   <div class="container">
     <a class="navbar-brand" href="#topo"><span class="bracket">&lt;/&gt;</span> CyberShield</a>
-    <button class="navbar-toggler navbar-dark border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Alternar navegação">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Alternar navegação" style="border-color:var(--border-soft);">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navMenu">
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
-        <li class="nav-item"><a class="nav-link" href="#areas">Áreas de Atuação</a></li>
-        <li class="nav-item"><a class="nav-link" href="#dicas">Dicas de Segurança</a></li>
+        <li class="nav-item"><a class="nav-link" href="#areas">Áreas</a></li>
+        <li class="nav-item"><a class="nav-link" href="#mercado">Mercado</a></li>
+        <li class="nav-item"><a class="nav-link" href="#dicas">Dicas</a></li>
         <li class="nav-item"><a class="nav-link" href="#feedback">Feedback</a></li>
+        <li class="nav-item"><a class="nav-link" href="#resultados">Resultados</a></li>
+        <li class="nav-item"><a class="nav-link" href="#fontes">Fontes</a></li>
       </ul>
+      <div class="a11y-tools" role="group" aria-label="Opções de acessibilidade">
+        <button type="button" class="a11y-btn" data-theme-btn="dark" aria-pressed="true" aria-label="Tema escuro" title="Tema escuro"><i class="bi bi-moon-stars-fill" aria-hidden="true"></i></button>
+        <button type="button" class="a11y-btn" data-theme-btn="light" aria-pressed="false" aria-label="Tema claro" title="Tema claro"><i class="bi bi-sun-fill" aria-hidden="true"></i></button>
+        <button type="button" class="a11y-btn" data-theme-btn="contrast" aria-pressed="false" aria-label="Alto contraste" title="Alto contraste"><i class="bi bi-circle-half" aria-hidden="true"></i></button>
+        <span class="a11y-sep" aria-hidden="true"></span>
+        <button type="button" class="a11y-btn" id="fsDec" aria-label="Diminuir texto" title="Diminuir texto"><span aria-hidden="true" style="font-size:.8rem">A−</span></button>
+        <button type="button" class="a11y-btn" id="fsInc" aria-label="Aumentar texto" title="Aumentar texto"><span aria-hidden="true" style="font-size:1.05rem">A+</span></button>
+      </div>
     </div>
   </div>
 </nav>
@@ -393,12 +602,12 @@
   <div class="container">
     <div class="row align-items-center g-5">
       <div class="col-lg-6">
-        <p class="eyebrow mono">carreira // tecnologia da segurança</p>
-        <h1>Proteger o mundo digital começa com uma decisão.</h1>
-        <p class="lead">Cibersegurança é uma das áreas de tecnologia que mais cresce, com procura constante por profissionais capazes de defender sistemas, redes e dados contra ameaças cada vez mais sofisticadas.</p>
+        <p class="eyebrow mono">projeto de extensão // carreira em cibersegurança</p>
+        <h1>Cibersegurança: como é a carreira de verdade?</h1>
+        <p class="lead">Faltam profissionais de segurança digital no mundo todo. Neste site a gente explica o que essa pessoa faz, mostra quanto o mercado costuma pagar e reúne a opinião de quem se interessa pela área.<sup><a href="#ref-1" aria-label="Fonte 1">[1]</a></sup></p>
         <div class="d-flex flex-wrap gap-3 mt-4">
           <a href="#areas" class="btn btn-cyan">Ver áreas de atuação</a>
-          <a href="#sobre" class="btn btn-outline-soft">O que faz este profissional?</a>
+          <a href="#sobre" class="btn btn-outline-soft">O que essa pessoa faz?</a>
         </div>
       </div>
       <div class="col-lg-6">
@@ -416,42 +625,44 @@
   </div>
 </header>
 
+<main id="conteudo" tabindex="-1">
+
 <!-- ===== SECÇÃO 1: O QUE FAZ ===== -->
 <section id="sobre">
   <div class="container">
     <div class="row g-5">
       <div class="col-lg-5">
-        <h2 class="section-title">O que faz um profissional de Cibersegurança</h2>
-        <p class="section-sub">Este profissional protege sistemas, redes e informações contra acessos não autorizados, falhas e ataques. Numa altura em que empresas e governos dependem totalmente de infraestrutura digital, esta função deixou de ser opcional — tornou-se essencial para a continuidade de qualquer negócio.</p>
-        <p class="section-sub mt-3">O trabalho combina raciocínio técnico com investigação constante: novas vulnerabilidades surgem todos os dias, e manter-se atualizado é parte do ofício.</p>
+        <h2 class="section-title">O que faz quem trabalha com cibersegurança</h2>
+        <p class="section-sub">Quem trabalha com segurança cuida para que sistemas, redes e informações não sejam acessados ou derrubados por quem não deveria. Como quase toda empresa hoje depende de computador para funcionar, esse trabalho deixou de ser opcional e virou parte da rotina de qualquer negócio.</p>
+        <p class="section-sub mt-3">É um trabalho que mistura raciocínio técnico com investigação. Aparecem falhas novas o tempo todo, então estudar sempre faz parte.</p>
       </div>
       <div class="col-lg-7">
         <div class="skill-item">
           <div class="skill-icon"><i class="bi bi-diagram-3"></i></div>
           <div>
             <h3>Redes de Computadores</h3>
-            <p>Compreender como os dados circulam — protocolos, firewalls e segmentação — é a base para identificar comportamentos anómalos.</p>
+            <p>Saber como os dados circulam (protocolos, firewalls, segmentação) ajuda a perceber quando algo foge do normal.</p>
           </div>
         </div>
         <div class="skill-item">
           <div class="skill-icon"><i class="bi bi-terminal"></i></div>
           <div>
             <h3>Linux</h3>
-            <p>A maioria das ferramentas e servidores de segurança corre sobre Linux; domínio de linha de comandos é indispensável.</p>
+            <p>Boa parte das ferramentas e dos servidores de segurança roda em Linux, então saber usar a linha de comando é essencial.</p>
           </div>
         </div>
         <div class="skill-item">
           <div class="skill-icon"><i class="bi bi-shield-lock"></i></div>
           <div>
             <h3>Criptografia</h3>
-            <p>Entender como os dados são cifrados e protegidos em trânsito e em repouso é essencial para desenhar defesas eficazes.</p>
+            <p>Entender como os dados são protegidos enquanto trafegam e quando estão guardados ajuda a montar defesas que funcionam.</p>
           </div>
         </div>
         <div class="skill-item">
           <div class="skill-icon"><i class="bi bi-bug"></i></div>
           <div>
             <h3>Análise de Vulnerabilidades</h3>
-            <p>Identificar falhas antes que sejam exploradas — através de scans, auditorias e testes controlados — reduz o risco real de incidentes.</p>
+            <p>Encontrar a falha antes que alguém a explore, com varreduras, auditorias e testes controlados, diminui o risco de incidentes.</p>
           </div>
         </div>
       </div>
@@ -463,7 +674,7 @@
 <section id="areas" class="section-alt">
   <div class="container">
     <h2 class="section-title">Áreas de Atuação</h2>
-    <p class="section-sub mb-5">A Cibersegurança não é uma única profissão — é um conjunto de especializações. Estas são três das frentes mais procuradas no mercado.</p>
+    <p class="section-sub mb-5">Cibersegurança não é uma profissão só, são várias especialidades. Aqui estão três delas.</p>
 
     <div class="row g-4">
       <div class="col-md-4">
@@ -471,7 +682,7 @@
           <div class="area-icon"><i class="bi bi-crosshair"></i></div>
           <p class="tag mono">ataque</p>
           <h3>Red Team</h3>
-          <p>Simula ataques reais para testar as defesas de uma organização antes que um agente malicioso o faça.</p>
+          <p>Simula ataques de verdade, com autorização, para testar as defesas de uma organização antes que alguém mal-intencionado o faça.</p>
           <ul>
             <li>Testes de invasão (pentests)</li>
             <li>Identificação de falhas exploráveis</li>
@@ -484,9 +695,9 @@
           <div class="area-icon"><i class="bi bi-shield-check"></i></div>
           <p class="tag mono">defesa</p>
           <h3>Blue Team</h3>
-          <p>Monitoriza e defende a infraestrutura em tempo real, respondendo a incidentes assim que surgem.</p>
+          <p>Monitora e defende a infraestrutura em tempo real e responde aos incidentes assim que aparecem.</p>
           <ul>
-            <li>Monitorização contínua (SOC)</li>
+            <li>Monitoramento contínuo (SOC)</li>
             <li>Resposta a incidentes</li>
             <li>Hardening de sistemas e redes</li>
           </ul>
@@ -497,7 +708,7 @@
           <div class="area-icon"><i class="bi bi-search"></i></div>
           <p class="tag mono">investigação</p>
           <h3>Perícia Forense</h3>
-          <p>Investiga incidentes já ocorridos, reconstruindo o que aconteceu através da análise de dados e evidências digitais.</p>
+          <p>Investiga incidentes que já aconteceram e reconstrói o que houve a partir de dados e evidências digitais.</p>
           <ul>
             <li>Análise pós-incidente</li>
             <li>Preservação de evidências</li>
@@ -509,39 +720,89 @@
   </div>
 </section>
 
+<!-- ===== SECÇÃO: MERCADO E SALÁRIOS ===== -->
+<section id="mercado" class="section-alt">
+  <div class="container">
+    <h2 class="section-title">Mercado e salários</h2>
+    <p class="section-sub mb-5">Os números abaixo vêm de fontes públicas, e cada um tem sua referência na seção <a href="#fontes">Fontes</a>. Os valores em reais são salários mensais brutos e mudam conforme a região, o tamanho da empresa, a experiência e as certificações.</p>
+
+    <div class="row g-4 mb-5">
+      <div class="col-md-4">
+        <div class="stat-card">
+          <div class="stat-value">5,5 milhões</div>
+          <p class="stat-label">de profissionais de cibersegurança no mundo, segundo o estudo da ISC2 de 2024.<sup><a href="#ref-1" aria-label="Fonte 1">[1]</a></sup></p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-card">
+          <div class="stat-value">4,8 milhões</div>
+          <p class="stat-label">é o déficit estimado de profissionais. É uma necessidade que as organizações percebem, não o número de vagas abertas.<sup><a href="#ref-1" aria-label="Fonte 1">[1]</a></sup></p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-card">
+          <div class="stat-value">R$ 2.727 a R$ 16.292</div>
+          <p class="stat-label">piso e teto salarial de Analista de Segurança da Informação em contratos formais no Brasil (CAGED, jun/2025 a mai/2026).<sup><a href="#ref-2" aria-label="Fonte 2">[2]</a></sup></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="chart-card">
+          <h3>Faixa salarial por nível de carreira</h3>
+          <p class="chart-note">Salário mensal bruto no Brasil. Fonte: Guia Salarial 2026, da Robert Half.<sup><a href="#ref-3" aria-label="Fonte 3">[3]</a></sup></p>
+          <div class="chart-box"><canvas id="chartSalario" role="img" aria-label="Gráfico de barras com a faixa salarial por nível de carreira em cibersegurança"></canvas></div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="chart-card">
+          <h3>Os mesmos dados em tabela</h3>
+          <table class="data-table">
+            <caption class="visually-hidden">Faixa salarial mensal por nível de carreira</caption>
+            <thead><tr><th scope="col">Cargo</th><th scope="col">Mínimo</th><th scope="col">Central</th><th scope="col">Máximo</th></tr></thead>
+            <tbody id="tbSalario"></tbody>
+          </table>
+          <p class="chart-note mt-3 mb-0">A fonte não explica como calcula o valor "central", então trate as faixas como referência de mercado, não como média oficial. Os números do CAGED (acima) e os da Robert Half medem públicos diferentes: um olha contratos formais de todo o país, o outro olha faixas praticadas na contratação de tecnologia. Por isso não vale compará-los diretamente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== SECÇÃO EXTRA: DICAS DE SEGURANÇA ===== -->
 <section id="dicas">
   <div class="container">
-    <h2 class="section-title">Dicas rápidas de segurança</h2>
-    <p class="section-sub mb-5">Boas práticas simples que qualquer pessoa — não só profissionais da área — deveria aplicar no dia a dia.</p>
+    <h2 class="section-title">Quatro hábitos simples de segurança</h2>
+    <p class="section-sub mb-5">Qualquer pessoa pode adotar esses hábitos no dia a dia, não só quem trabalha na área.</p>
 
     <div class="row g-4">
       <div class="col-sm-6 col-lg-3">
         <div class="tip-card">
           <i class="bi bi-key"></i>
-          <h3>Palavras-passe fortes</h3>
-          <p>Use combinações longas e únicas para cada serviço, idealmente com um gestor de palavras-passe.</p>
+          <h3>Senhas fortes</h3>
+          <p>Use senhas longas e diferentes em cada serviço. Um gerenciador de senhas ajuda a não precisar decorar tudo.</p>
         </div>
       </div>
       <div class="col-sm-6 col-lg-3">
         <div class="tip-card">
           <i class="bi bi-shield-lock"></i>
-          <h3>Ative a autenticação em dois fatores</h3>
-          <p>O 2FA impede o acesso a contas mesmo que a palavra-passe seja descoberta.</p>
+          <h3>Ative a verificação em duas etapas</h3>
+          <p>Mesmo que a senha vaze, a segunda etapa impede que alguém entre na sua conta.</p>
         </div>
       </div>
       <div class="col-sm-6 col-lg-3">
         <div class="tip-card">
           <i class="bi bi-envelope-exclamation"></i>
           <h3>Desconfie de e-mails suspeitos</h3>
-          <p>Verifique sempre o remetente antes de clicar em links ou abrir anexos inesperados.</p>
+          <p>Confira o remetente antes de clicar em links ou abrir anexos que você não esperava.</p>
         </div>
       </div>
       <div class="col-sm-6 col-lg-3">
         <div class="tip-card">
           <i class="bi bi-arrow-repeat"></i>
           <h3>Mantenha tudo atualizado</h3>
-          <p>Atualizações corrigem falhas conhecidas — adiá-las deixa a porta aberta para ataques.</p>
+          <p>As atualizações corrigem falhas já conhecidas. Adiar deixa a porta aberta para ataques.</p>
         </div>
       </div>
     </div>
@@ -553,18 +814,25 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8">
-        <h2 class="section-title text-center">Deixe o seu feedback</h2>
-        <p class="section-sub text-center mx-auto mb-5">Está a considerar esta carreira ou já atua na área? Conte-nos o seu nível de interesse e o que gostaria de ver por aqui.</p>
+        <h2 class="section-title text-center">Deixe seu feedback</h2>
+        <p class="section-sub text-center mx-auto mb-5">Você está pensando em seguir essa carreira ou já trabalha na área? Conte seu nível de interesse e o que gostaria de ver aqui.</p>
 
         <div class="form-panel">
-      
+          <!--
+            Formulário pronto para Formspree:
+            1. Crie uma conta em https://formspree.io
+            2. O ID do formulário (xqpaqawd) já está na action abaixo
+            3. O envio funciona sem necessidade de backend próprio
+          -->
           <form id="feedbackForm" action="https://formspree.io/f/xqpaqawd" method="POST">
             <input type="hidden" name="_subject" value="Novo feedback — CyberShield">
+            <!-- Campo-armadilha anti-spam (o Formspree ignora envios em que ele vier preenchido) -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
 
             <div class="row g-3">
               <div class="col-md-6">
                 <label for="nome" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="O seu nome" required>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome" required>
               </div>
               <div class="col-md-6">
                 <label for="email" class="form-label">E-mail</label>
@@ -580,14 +848,40 @@
                   <option value="Já atuo na área">Já atuo na área</option>
                 </select>
               </div>
+              <div class="col-md-8">
+                <label for="area" class="form-label">Área de maior interesse</label>
+                <select class="form-select" id="area" name="area" required>
+                  <option value="" selected disabled>Selecione uma opção</option>
+                  <option value="Red Team">Red Team (ataque)</option>
+                  <option value="Blue Team">Blue Team (defesa)</option>
+                  <option value="Perícia Forense">Perícia Forense (investigação)</option>
+                  <option value="Ainda não sei">Ainda não sei</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="interesse" class="form-label">Interesse na carreira</label>
+                <select class="form-select" id="interesse" name="interesse" required>
+                  <option value="" selected disabled>1 a 5</option>
+                  <option value="1">1 (nenhum)</option>
+                  <option value="2">2 (baixo)</option>
+                  <option value="3">3 (médio)</option>
+                  <option value="4">4 (alto)</option>
+                  <option value="5">5 (muito alto)</option>
+                </select>
+              </div>
               <div class="col-12">
                 <label for="mensagem" class="form-label">Mensagem / Feedback</label>
-                <textarea class="form-control" id="mensagem" name="mensagem" rows="4" placeholder="Partilhe a sua opinião, dúvida ou sugestão..." required></textarea>
+                <textarea class="form-control" id="mensagem" name="mensagem" rows="4" placeholder="Escreva sua opinião, dúvida ou sugestão..." required></textarea>
               </div>
             </div>
 
+            <div class="form-check mt-4">
+              <input class="form-check-input" type="checkbox" id="consentimento" name="consentimento" value="sim" required>
+              <label class="form-check-label" for="consentimento">Concordo que minhas respostas sejam usadas de forma anônima e agregada nesta pesquisa acadêmica (LGPD). Meu e-mail serve apenas para evitar respostas duplicadas e não é exibido publicamente.</label>
+            </div>
+
             <div class="d-flex align-items-center justify-content-between mt-4 flex-wrap gap-3">
-              <button type="submit" id="submitBtn" class="btn btn-cyan">Enviar feedback</button>
+              <button type="submit" class="btn btn-cyan">Enviar feedback</button>
               <span id="formStatus" class="mono" aria-live="polite"></span>
             </div>
 
@@ -602,16 +896,117 @@
   </div>
 </section>
 
+<!-- ===== SECÇÃO: RESULTADOS DA PESQUISA ===== -->
+<section id="resultados" class="section-alt">
+  <div class="container">
+    <h2 class="section-title">Resultados da pesquisa</h2>
+    <p class="section-sub mb-4">As respostas do formulário viram os gráficos abaixo. Exporte o CSV do Formspree e carregue-o aqui: o navegador valida, limpa e agrega os dados localmente, sem enviá-los a nenhum servidor.</p>
+
+    <div class="form-panel mb-4">
+      <div class="row g-3 align-items-end">
+        <div class="col-md-6">
+          <label for="csvFile" class="form-label">Arquivo CSV com as respostas</label>
+          <input type="file" class="form-control" id="csvFile" accept=".csv,text/csv">
+        </div>
+        <div class="col-md-6 d-flex flex-wrap gap-2">
+          <button type="button" class="btn-tool" id="btnDemo"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i> Dados de demonstração</button>
+          <button type="button" class="btn-tool" id="btnBaixar"><i class="bi bi-download" aria-hidden="true"></i> Baixar dados tratados (CSV)</button>
+        </div>
+      </div>
+      <div id="dataBanner" class="data-banner" role="status" aria-live="polite"><i class="bi bi-info-circle-fill" aria-hidden="true"></i><span></span></div>
+    </div>
+
+    <div class="row g-4 mb-4">
+      <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-value" id="statN">—</div><p class="stat-label">respostas válidas</p></div></div>
+      <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-value" id="statMedia">—</div><p class="stat-label">interesse médio (escala de 1 a 5)</p></div></div>
+      <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-value" id="statMediana">—</div><p class="stat-label">mediana do interesse</p></div></div>
+      <div class="col-6 col-lg-3"><div class="stat-card"><div class="stat-value" id="statModa">—</div><p class="stat-label">moda (nota mais frequente)</p></div></div>
+    </div>
+
+    <div class="row g-4 mb-5">
+      <div class="col-lg-6">
+        <div class="chart-card">
+          <h3>Respondentes por nível de conhecimento</h3>
+          <p class="chart-note">Quem respondeu à pesquisa.</p>
+          <div class="chart-box"><canvas id="chartNivel" role="img" aria-label="Gráfico de barras: respondentes por nível de conhecimento"></canvas></div>
+          <details>
+            <summary>Ver os dados do gráfico em tabela</summary>
+            <table class="data-table">
+              <caption class="visually-hidden">Respondentes por nível de conhecimento</caption>
+              <thead><tr><th scope="col">Nível</th><th scope="col">Respostas</th><th scope="col">%</th></tr></thead>
+              <tbody id="tbNivel"></tbody>
+            </table>
+          </details>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="chart-card">
+          <h3>Área de maior interesse</h3>
+          <p class="chart-note">Red Team, Blue Team, Perícia Forense ou indecisos.</p>
+          <div class="chart-box"><canvas id="chartArea" role="img" aria-label="Gráfico de barras: área de maior interesse"></canvas></div>
+          <details>
+            <summary>Ver os dados do gráfico em tabela</summary>
+            <table class="data-table">
+              <caption class="visually-hidden">Área de maior interesse</caption>
+              <thead><tr><th scope="col">Área</th><th scope="col">Respostas</th><th scope="col">%</th></tr></thead>
+              <tbody id="tbArea"></tbody>
+            </table>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+      <div class="col-lg-4">
+        <div class="chart-card">
+          <h3>Qualidade dos dados</h3>
+          <p class="chart-note">O que foi lido, aceito e descartado no tratamento.</p>
+          <dl class="quality-list" id="qualidade"></dl>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <h3 class="h5 mb-3">Como os dados são tratados</h3>
+        <ol class="pipeline">
+          <li><h4>Coleta</h4><p>Formulário com campos fechados (nível, área, nota de 1 a 5), consentimento (LGPD) e campo anti-spam, enviado ao Formspree.</p></li>
+          <li><h4>Exportação</h4><p>As respostas são exportadas do Formspree em CSV e carregadas nesta página.</p></li>
+          <li><h4>Validação</h4><p>Cada linha precisa ter nível e área dentro das opções permitidas e nota inteira de 1 a 5. O que falha é descartado e contado.</p></li>
+          <li><h4>Limpeza</h4><p>Normaliza maiúsculas, acentos e espaços; remove respostas repetidas pelo mesmo e-mail. O e-mail nunca é exibido.</p></li>
+          <li><h4>Análise</h4><p>Frequências e percentuais por categoria; média, mediana e moda da nota de interesse; gráficos em Chart.js.</p></li>
+        </ol>
+        <p class="chart-note mt-3 mb-0">Limitação: a amostra é por conveniência (quem aceitou responder). Os resultados descrevem os respondentes e não podem ser generalizados para todas as pessoas interessadas na área.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECÇÃO: FONTES ===== -->
+<section id="fontes">
+  <div class="container">
+    <h2 class="section-title">Fontes e referências</h2>
+    <p class="section-sub mb-4">Todas as informações de mercado e salário deste site vêm das fontes abaixo, consultadas em 26/10/2026. Confira os originais antes de tomar decisões de carreira.</p>
+    <ol class="ref-list">
+      <li id="ref-1">ISC2. <em>2024 ISC2 Cybersecurity Workforce Study</em>: força de trabalho global de 5,5 milhões e déficit estimado de 4,8 milhões de profissionais. Resumo: ASIS Security Management, "Skills shortage cybersecurity", out/2024: <a href="https://www.asisonline.org/security-management-magazine/latest-news/today-in-security/2024/october/skills-shortage-cybersecurity/" target="_blank" rel="noopener">asisonline.org</a>. Relatórios completos: <a href="https://www.isc2.org/Research" target="_blank" rel="noopener">isc2.org/Research</a>.</li>
+      <li id="ref-2">Portal Salário, com microdados do CAGED (Ministério do Trabalho). <em>Analista em Segurança da Informação — Salário Brasil</em>, período 06/2025 a 05/2026 (piso médio R$ 2.727,34; teto R$ 16.292,40; considera apenas o salário base): <a href="https://www.salario.com.br/profissao/analista-em-seguranca-da-informacao-cbo-212320" target="_blank" rel="noopener">salario.com.br</a>.</li>
+      <li id="ref-3">Robert Half. <em>Guia Salarial 2026</em>, faixas mensais para profissionais de segurança, conforme reportado por Canaltech: <a href="https://canaltech.com.br/mercado/salario-de-r-19-mil-guia-mostra-as-profissoes-de-tecnologia-em-alta-em-2026/" target="_blank" rel="noopener">canaltech.com.br</a>, e ToExceed, "Salário Cibersegurança", set/2026: <a href="https://toexceed.com.br/blog/2026/09/18/salario-ciberseguranca-quanto-ganha-um-profissional-da-area/" target="_blank" rel="noopener">toexceed.com.br</a>.</li>
+      <li id="ref-4">Pesquisa de campo CyberShield: respostas do formulário deste site, tratadas conforme descrito em "Como os dados são tratados". Enquanto não houver respostas reais carregadas, os gráficos exibem dados de demonstração identificados como tal.</li>
+    </ol>
+  </div>
+</section>
+
+</main>
+
 <!-- ===== RODAPÉ ===== -->
 <footer>
   <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-    <span>&copy; 2026 CyberShield. Conteúdo educativo sobre carreira em Cibersegurança.</span>
-    <span class="mono" style="color:var(--text-muted);">feito com HTML · CSS · Bootstrap 5</span>
+    <span>&copy; 2026 CyberShield. Projeto de extensão com fins educativos.</span>
+    <span class="mono" style="color:var(--text-muted);">feito com HTML, CSS e Bootstrap 5</span>
   </div>
 </footer>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Chart.js (gráficos) -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 
 <script>
   // ---- Efeito de digitação no terminal do hero ----
@@ -619,8 +1014,8 @@
     { prompt: "analista@sec", path: "~$", text: " scan --target rede-corporativa" },
     { prompt: "", path: "", text: "[OK] 0 vulnerabilidades críticas encontradas" },
     { prompt: "", path: "", text: "[OK] firewall: ativo" },
-    { prompt: "analista@sec", path: "~$", text: " status --equipa blue-team" },
-    { prompt: "", path: "", text: "monitorização: em tempo real" },
+    { prompt: "analista@sec", path: "~$", text: " status --equipe blue-team" },
+    { prompt: "", path: "", text: "monitoramento: em tempo real" },
   ];
 
   const terminalBody = document.getElementById('terminalBody');
@@ -653,7 +1048,7 @@
     terminalBody.appendChild(finalCursor);
   }
 
-  // Respeita utilizadores que preferem menos animação
+  // Respeita quem prefere menos animação
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(prefersReducedMotion){
     terminalLines.forEach(line => {
@@ -666,7 +1061,7 @@
     typeTerminal();
   }
 
-  // ---- Fecha o menu mobile ao clicar num link ----
+  // ---- Fecha o menu no celular ao clicar num link ----
   document.querySelectorAll('#navMenu .nav-link').forEach(link => {
     link.addEventListener('click', () => {
       const menu = document.getElementById('navMenu');
@@ -679,7 +1074,6 @@
   // ---- Envio do formulário via Fetch (AJAX) para Formspree ----
   const form = document.getElementById('feedbackForm');
   const status = document.getElementById('formStatus');
-  const submitBtn = document.getElementById('submitBtn');
   const formAlert = document.getElementById('formAlert');
   const formAlertText = document.getElementById('formAlertText');
   const formAlertIcon = formAlert.querySelector('i');
@@ -692,36 +1086,399 @@
     formAlertText.textContent = message;
   }
 
-  form.addEventListener('submit', async function(e) {
+  form.addEventListener('submit', async function(e){
     e.preventDefault();
+    status.textContent = 'Enviando...';
+    status.style.color = 'var(--text-muted)';
+    formAlert.classList.remove('show');
 
     const data = new FormData(form);
-    submitBtn.textContent = 'A enviar...';
-    status.textContent = '';
 
-    try {
+    try{
       const response = await fetch(form.action, {
-        method: form.method,
+        method: 'POST',
         body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
+        headers: { 'Accept': 'application/json' }
       });
 
-      if (response.ok) {
-        showFormAlert('success', 'Feedback enviado com sucesso! Obrigado por partilhar a sua opinião.');
+      if(response.ok){
+        status.textContent = '';
+        showFormAlert('success', 'Feedback enviado! Obrigado por responder.');
         form.reset();
       } else {
+        status.textContent = '';
         showFormAlert('error', 'Não foi possível enviar o feedback. Tente novamente.');
       }
-    } catch(err) {
-      showFormAlert('error', 'Erro de ligação. Verifique o endpoint do formulário.');
-    } finally {
-      submitBtn.textContent = 'Enviar feedback';
+    } catch(err){
+      status.textContent = '';
+      showFormAlert('error', 'Erro de conexão. Confira o endereço do formulário (o ID do Formspree).');
     }
   });
 </script>
 
+<script>
+  //  ACESSIBILIDADE: tema (escuro / claro / alto contraste) e tamanho do texto
+  (function(){
+    const root = document.documentElement;
+    const nav = document.querySelector('.navbar');
+    const themeBtns = document.querySelectorAll('[data-theme-btn]');
+    const fsDec = document.getElementById('fsDec');
+    const fsInc = document.getElementById('fsInc');
+    const FS_MAX = 2;
+
+    function store(k, v){ try{ localStorage.setItem(k, v); }catch(e){} }
+
+    function applyTheme(t, persist){
+      const bs = t === 'light' ? 'light' : 'dark';
+      root.setAttribute('data-theme', t);
+      root.setAttribute('data-bs-theme', bs);
+      nav.setAttribute('data-bs-theme', bs);
+      themeBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.themeBtn === t)));
+      if(persist) store('cs-theme', t);
+      document.dispatchEvent(new CustomEvent('themechange'));
+    }
+    function applyFs(n, persist){
+      n = Math.max(0, Math.min(FS_MAX, n));
+      root.setAttribute('data-fs', String(n));
+      fsDec.disabled = n === 0;
+      fsInc.disabled = n === FS_MAX;
+      if(persist) store('cs-fs', String(n));
+    }
+
+    themeBtns.forEach(b => b.addEventListener('click', () => applyTheme(b.dataset.themeBtn, true)));
+    fsDec.addEventListener('click', () => applyFs(Number(root.getAttribute('data-fs') || 0) - 1, true));
+    fsInc.addEventListener('click', () => applyFs(Number(root.getAttribute('data-fs') || 0) + 1, true));
+
+    applyTheme(root.getAttribute('data-theme') || 'dark', false);
+    applyFs(Number(root.getAttribute('data-fs') || 0), false);
+  })();
+
+  //  DADOS: salários, tratamento das respostas e gráficos
+  (function(){
+    // ---------- utilitários ----------
+    const fmtNum = (x, d = 2) => x.toLocaleString('pt-BR', { maximumFractionDigits: d });
+    const fmtBRL = v => v.toLocaleString('pt-BR', { style:'currency', currency:'BRL', maximumFractionDigits:0 });
+    // normaliza texto: minúsculas, sem acento, só letras/números (para comparar categorias e cabeçalhos)
+    const norm = s => String(s == null ? '' : s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+    const temChart = typeof Chart !== 'undefined';
+    if(temChart){ Chart.defaults.font.family = "'Inter', sans-serif"; }
+
+    function cores(){
+      const cs = getComputedStyle(document.documentElement);
+      const g = n => cs.getPropertyValue(n).trim();
+      return { cyan:g('--cyan'), green:g('--green'), red:g('--red'), muted:g('--text-muted'), grid:g('--border-soft'), text:g('--text-primary') };
+    }
+    const instancias = {};
+    function desenhar(id, config){
+      if(!temChart) return;
+      if(instancias[id]) instancias[id].destroy();
+      instancias[id] = new Chart(document.getElementById(id), config);
+    }
+    function limparGrafico(id){
+      if(instancias[id]){ instancias[id].destroy(); delete instancias[id]; }
+    }
+
+    // ---------- 1) SALÁRIOS (Robert Half, Guia Salarial 2026) ----------
+    const SALARIOS = [
+      ['Analista júnior', 6200, 8100, 10400],
+      ['Analista pleno', 8500, 11150, 14300],
+      ['Analista sênior', 11300, 14750, 19000],
+      ['Coordenador(a)', 18000, 20800, 24650],
+      ['Gerente', 22200, 28900, 37200]
+    ];
+
+    function tabelaSalario(){
+      const tb = document.getElementById('tbSalario');
+      tb.textContent = '';
+      SALARIOS.forEach(l => {
+        const tr = document.createElement('tr');
+        l.forEach((v, i) => {
+          const td = document.createElement('td');
+          td.textContent = i === 0 ? v : fmtBRL(v);
+          tr.appendChild(td);
+        });
+        tb.appendChild(tr);
+      });
+    }
+
+    function graficoSalario(){
+      const c = cores();
+      desenhar('chartSalario', {
+        type: 'bar',
+        data: {
+          labels: SALARIOS.map(l => l[0]),
+          datasets: [
+            { label:'Mínimo',  data: SALARIOS.map(l => l[1]), backgroundColor: c.muted, borderRadius:3 },
+            { label:'Central', data: SALARIOS.map(l => l[2]), backgroundColor: c.cyan,  borderRadius:3 },
+            { label:'Máximo',  data: SALARIOS.map(l => l[3]), backgroundColor: c.green, borderRadius:3 }
+          ]
+        },
+        options: {
+          responsive:true, maintainAspectRatio:false,
+          plugins: {
+            legend: { labels:{ color:c.text } },
+            tooltip: { callbacks:{ label: ctx => ctx.dataset.label + ': ' + fmtBRL(ctx.parsed.y) } }
+          },
+          scales: {
+            x: { ticks:{ color:c.text }, grid:{ display:false } },
+            y: { beginAtZero:true, ticks:{ color:c.muted, callback: v => fmtBRL(v) }, grid:{ color:c.grid } }
+          }
+        }
+      });
+    }
+
+    // ---------- 2) PESQUISA: categorias aceitas ----------
+    const NIVEIS = ['Curioso(a) / iniciante', 'Estudante em formação', 'Profissional em transição de carreira', 'Já atuo na área'];
+    const NIVEIS_CURTO = ['Curioso(a)/iniciante', 'Estudante', 'Em transição', 'Já atua'];
+    const AREAS = ['Red Team', 'Blue Team', 'Perícia Forense', 'Ainda não sei'];
+    const NIVEL_MAP = new Map(NIVEIS.map(v => [norm(v), v]));
+    const AREA_MAP = new Map(AREAS.map(v => [norm(v), v]));
+
+    // ---------- 3) LEITURA DO CSV (aceita vírgula ou ponto e vírgula, aspas e BOM) ----------
+    function parseCSV(text){
+      text = text.replace(/^﻿/, '');
+      const primeira = text.split(/\r?\n/, 1)[0] || '';
+      const delim = (primeira.match(/;/g) || []).length > (primeira.match(/,/g) || []).length ? ';' : ',';
+      const rows = [];
+      let row = [], field = '', aspas = false;
+      for(let i = 0; i < text.length; i++){
+        const ch = text[i];
+        if(aspas){
+          if(ch === '"'){
+            if(text[i + 1] === '"'){ field += '"'; i++; } else { aspas = false; }
+          } else { field += ch; }
+        } else if(ch === '"'){ aspas = true; }
+        else if(ch === delim){ row.push(field); field = ''; }
+        else if(ch === '\n' || ch === '\r'){
+          if(ch === '\r' && text[i + 1] === '\n') i++;
+          row.push(field); field = ''; rows.push(row); row = [];
+        } else { field += ch; }
+      }
+      if(field !== '' || row.length){ row.push(field); rows.push(row); }
+      return rows.filter(r => r.some(v => v.trim() !== ''));
+    }
+
+    // transforma linhas em registros {nivel, area, interesse, email} localizando as colunas pelo cabeçalho
+    function lerCSV(text){
+      const rows = parseCSV(text);
+      if(rows.length < 2) return { erro: 'O arquivo não tem linhas de dados (só cabeçalho ou vazio).' };
+      const cab = rows[0].map(norm);
+      const achar = nomes => cab.findIndex(h => nomes.includes(h));
+      const col = { nivel: achar(['nivel']), area: achar(['area']), interesse: achar(['interesse']), email: achar(['email', 'replyto']) };
+      const faltando = ['nivel', 'area', 'interesse'].filter(k => col[k] === -1);
+      if(faltando.length){
+        return { erro: 'Colunas não encontradas no CSV: ' + faltando.join(', ') + '. Os cabeçalhos esperados são nivel, area e interesse.' };
+      }
+      const get = (r, k) => col[k] === -1 ? '' : (r[col[k]] || '');
+      return { records: rows.slice(1).map(r => ({ nivel:get(r,'nivel'), area:get(r,'area'), interesse:get(r,'interesse'), email:get(r,'email') })) };
+    }
+
+    // ---------- 4) VALIDAÇÃO + LIMPEZA ----------
+    function processar(records){
+      const q = { recebidos: records.length, invalidos: 0, duplicados: 0, motivos: {} };
+      const vistos = new Set();
+      const validos = [];
+      const descartar = m => { q.invalidos++; q.motivos[m] = (q.motivos[m] || 0) + 1; };
+      for(const r of records){
+        const nivel = NIVEL_MAP.get(norm(r.nivel));
+        const area = AREA_MAP.get(norm(r.area));
+        const txt = String(r.interesse == null ? '' : r.interesse).trim();
+        const interesse = /^[1-5]$/.test(txt) ? Number(txt) : null;
+        if(!nivel){ descartar('nível ausente ou inválido'); continue; }
+        if(!area){ descartar('área ausente ou inválida'); continue; }
+        if(interesse === null){ descartar('interesse fora da escala 1 a 5'); continue; }
+        const email = String(r.email || '').trim().toLowerCase();
+        if(email){
+          if(vistos.has(email)){ q.duplicados++; continue; }
+          vistos.add(email);
+        }
+        validos.push({ nivel, area, interesse });   // o e-mail não segue adiante
+      }
+      return { validos, q };
+    }
+
+    // ---------- 5) ESTATÍSTICA ----------
+    function estatisticas(valores){
+      const n = valores.length;
+      if(!n) return null;
+      const s = [...valores].sort((a, b) => a - b);
+      const media = s.reduce((a, b) => a + b, 0) / n;
+      const mediana = n % 2 ? s[(n - 1) / 2] : (s[n / 2 - 1] + s[n / 2]) / 2;
+      const freq = {};
+      s.forEach(v => { freq[v] = (freq[v] || 0) + 1; });
+      const max = Math.max(...Object.values(freq));
+      const modas = Object.keys(freq).filter(k => freq[k] === max).map(Number);
+      return { n, media, mediana, modas };
+    }
+    function contar(validos, campo, lista){
+      const c = Object.fromEntries(lista.map(l => [l, 0]));
+      validos.forEach(v => { c[v[campo]]++; });
+      return c;
+    }
+
+    // ---------- 6) DADOS DE DEMONSTRAÇÃO (SIMULADOS) ----------
+    // Servem só para mostrar o funcionamento. Incluem linhas propositalmente problemáticas
+    // (duplicada, nota inválida, nível vazio, grafias diferentes) para exibir a validação e a limpeza.
+    const DEMO = [
+      {n:0,a:1,i:4,e:'u01'}, {n:0,a:0,i:5,e:'u02'}, {n:0,a:3,i:3,e:'u03'}, {n:0,a:1,i:4,e:'u04',ar:' BLUE TEAM '},
+      {n:0,a:2,i:3,e:'u05'}, {n:0,a:0,i:4,e:'u06'}, {n:0,a:3,i:2,e:'u07'},
+      {n:1,a:1,i:5,e:'u08'}, {n:1,a:0,i:4,e:'u09',nr:'estudante em formacao'}, {n:1,a:1,i:4,e:'u10'}, {n:1,a:2,i:5,e:'u11'},
+      {n:1,a:1,i:3,e:'u12'}, {n:1,a:0,i:5,e:'u13'}, {n:1,a:1,i:4,e:'u14'}, {n:1,a:3,i:3,e:'u15'}, {n:1,a:2,i:4,e:'u16'},
+      {n:2,a:1,i:4,e:'u17'}, {n:2,a:2,i:4,e:'u18'}, {n:2,a:1,i:5,e:'u19'}, {n:2,a:0,i:3,e:'u20'},
+      {n:3,a:1,i:5,e:'u21'}, {n:3,a:2,i:4,e:'u22'}, {n:3,a:0,i:5,e:'u23'}, {n:3,a:1,i:4,e:'u24'},
+      {n:1,a:1,i:4,e:'u10'},            // duplicada (mesmo e-mail de u10)
+      {n:0,a:0,i:9,e:'u25'},            // nota fora de 1 a 5
+      {n:-1,a:1,i:3,e:'u26'}            // nível vazio
+    ];
+    function dadosDemo(){
+      return DEMO.map(d => ({
+        nivel: d.nr !== undefined ? d.nr : (d.n >= 0 ? NIVEIS[d.n] : ''),
+        area: d.ar !== undefined ? d.ar : AREAS[d.a],
+        interesse: String(d.i),
+        email: d.e + '@demo.test'
+      }));
+    }
+
+    // ---------- 7) INTERFACE ----------
+    const el = id => document.getElementById(id);
+    let estado = { origem: 'demo', ...processar(dadosDemo()) };
+
+    function aviso(tipo, icone, texto){
+      const b = el('dataBanner');
+      b.className = 'data-banner ' + tipo;
+      b.querySelector('i').className = 'bi ' + icone;
+      b.querySelector('span').textContent = texto;
+    }
+
+    function tabela(id, lista, cont, total){
+      const tb = el(id);
+      tb.textContent = '';
+      lista.forEach(l => {
+        const tr = document.createElement('tr');
+        const pct = total ? (cont[l] / total * 100) : 0;
+        [l, String(cont[l]), fmtNum(pct, 1) + '%'].forEach(t => {
+          const td = document.createElement('td');
+          td.textContent = t;
+          tr.appendChild(td);
+        });
+        tb.appendChild(tr);
+      });
+    }
+
+    function renderQualidade(q, nValidos){
+      const dl = el('qualidade');
+      dl.textContent = '';
+      const add = (k, v) => {
+        const dt = document.createElement('dt'); dt.textContent = k;
+        const dd = document.createElement('dd'); dd.textContent = String(v);
+        dl.append(dt, dd);
+      };
+      add('Linhas lidas', q.recebidos);
+      add('Respostas válidas', nValidos);
+      add('Descartadas na validação', q.invalidos);
+      Object.entries(q.motivos).forEach(([m, c]) => add('— ' + m, c));
+      add('Duplicadas removidas (mesmo e-mail)', q.duplicados);
+    }
+
+    function render(){
+      const { validos, q } = estado;
+      const c = cores();
+      const st = estatisticas(validos.map(v => v.interesse));
+      const cNivel = contar(validos, 'nivel', NIVEIS);
+      const cArea = contar(validos, 'area', AREAS);
+
+      el('statN').textContent = st ? st.n : '—';
+      el('statMedia').textContent = st ? fmtNum(st.media) : '—';
+      el('statMediana').textContent = st ? fmtNum(st.mediana) : '—';
+      el('statModa').textContent = st ? st.modas.join(' e ') : '—';
+      el('btnBaixar').disabled = !st;
+
+      renderQualidade(q, validos.length);
+      tabela('tbNivel', NIVEIS, cNivel, validos.length);
+      tabela('tbArea', AREAS, cArea, validos.length);
+
+      if(!st){ limparGrafico('chartNivel'); limparGrafico('chartArea'); return; }
+
+      const rotulo = (lista, cont) => lista.map(l => l + ': ' + cont[l]).join('; ');
+      el('chartNivel').setAttribute('aria-label', 'Respondentes por nível de conhecimento. ' + rotulo(NIVEIS, cNivel));
+      el('chartArea').setAttribute('aria-label', 'Área de maior interesse. ' + rotulo(AREAS, cArea));
+
+      const escalaX = { beginAtZero:true, ticks:{ precision:0, color:c.muted }, grid:{ color:c.grid } };
+      desenhar('chartNivel', {
+        type: 'bar',
+        data: { labels: NIVEIS_CURTO, datasets: [{ label:'Respostas', data: NIVEIS.map(n => cNivel[n]), backgroundColor:c.cyan, borderRadius:4 }] },
+        options: {
+          indexAxis:'y', responsive:true, maintainAspectRatio:false,
+          plugins:{ legend:{ display:false } },
+          scales:{ x: escalaX, y:{ ticks:{ color:c.text }, grid:{ display:false } } }
+        }
+      });
+      desenhar('chartArea', {
+        type: 'bar',
+        data: { labels: AREAS, datasets: [{ label:'Respostas', data: AREAS.map(a => cArea[a]), backgroundColor:[c.red, c.cyan, c.green, c.muted], borderRadius:4 }] },
+        options: {
+          responsive:true, maintainAspectRatio:false,
+          plugins:{ legend:{ display:false } },
+          scales:{
+            x:{ ticks:{ color:c.text }, grid:{ display:false } },
+            y:{ beginAtZero:true, ticks:{ precision:0, color:c.muted }, grid:{ color:c.grid } }
+          }
+        }
+      });
+    }
+
+    function usarDemo(){
+      estado = { origem: 'demo', ...processar(dadosDemo()) };
+      aviso('demo', 'bi-info-circle-fill', 'DADOS DE DEMONSTRAÇÃO (simulados): servem só para mostrar o funcionamento. Para ver os resultados reais, carregue o CSV exportado do Formspree.');
+      render();
+    }
+
+    el('btnDemo').addEventListener('click', () => { el('csvFile').value = ''; usarDemo(); });
+
+    el('csvFile').addEventListener('change', async function(){
+      const f = this.files[0];
+      if(!f) return;
+      if(f.size > 5 * 1024 * 1024){
+        aviso('error', 'bi-x-circle-fill', 'Arquivo muito grande (limite de 5 MB). Exporte apenas as respostas da pesquisa.');
+        return;
+      }
+      try{
+        const r = lerCSV(await f.text());
+        if(r.erro){ aviso('error', 'bi-x-circle-fill', r.erro); return; }
+        estado = { origem: 'real', ...processar(r.records) };
+        if(estado.validos.length){
+          aviso('real', 'bi-check-circle-fill', 'Dados reais carregados de "' + f.name + '": ' + r.records.length + ' linhas lidas, ' + estado.validos.length + ' válidas.');
+        } else {
+          aviso('error', 'bi-x-circle-fill', 'Nenhuma resposta válida em "' + f.name + '". Veja o painel "Qualidade dos dados".');
+        }
+        render();
+      }catch(e){
+        aviso('error', 'bi-x-circle-fill', 'Não foi possível ler o arquivo. Confira se é um CSV exportado do Formspree.');
+      }
+    });
+
+    // exporta o resultado do tratamento: só nível, área e nota (sem nome, e-mail ou mensagem)
+    el('btnBaixar').addEventListener('click', () => {
+      if(!estado.validos.length) return;
+      const aspas = x => '"' + String(x).replace(/"/g, '""') + '"';
+      const linhas = ['nivel,area,interesse'].concat(estado.validos.map(v => [v.nivel, v.area, v.interesse].map(aspas).join(',')));
+      const url = URL.createObjectURL(new Blob(['﻿' + linhas.join('\r\n')], { type:'text/csv;charset=utf-8' }));
+      const a = document.createElement('a');
+      a.href = url; a.download = 'dados-tratados.csv';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+
+    // redesenha os gráficos quando o tema muda (as cores vêm das variáveis CSS)
+    document.addEventListener('themechange', () => { graficoSalario(); render(); });
+
+    // ---------- inicialização ----------
+    tabelaSalario();
+    graficoSalario();
+    usarDemo();
+  })();
+</script>
+
 </body>
 </html>
-
