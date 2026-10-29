@@ -18,17 +18,17 @@ Um projeto web informativo criado para apresentar caminhos profissionais na áre
 <div align="center">
 
 ### 1. Tela Principal & Terminal Interativo
-<img src="https://github.com/user-attachments/assets/image_bd5361.jpg" alt="Página Principal do CyberShield" width="90%"/>
+<img src="https://github.com/user-attachments/assets/97cf7763-acf6-4ccd-9010-008ef910303.jpg" alt="Página Principal do CyberShield" width="90%"/>
 
 <br><br>
 
-### 2. Guia de Áreas de Atuação (Red Team, Blue Team & Forense)
-<img src="https://github.com/user-attachments/assets/image_bd531f.jpg" alt="Áreas de Atuação" width="90%"/>
+### 2. Visão Geral de Mercado e Salários
+<img src="https://github.com/user-attachments/assets/78f9d39b-b54b-48c9-93ff-ff49798571b.jpg" alt="Mercado e Salários" width="90%"/>
 
 <br><br>
 
-### 3. Visualização de Dados de Mercado & Gráfico Salarial
-<img src="https://github.com/user-attachments/assets/image_bd505b.jpg" alt="Dados de Mercado e Gráficos" width="90%"/>
+### 3. Gráficos Interativos e Tabela Salarial por Cargo
+<img src="https://github.com/user-attachments/assets/17568b12-c80c-4813-8dc0-783fbefc03.jpg" alt="Gráfico Salarial e Tabela" width="90%"/>
 
 </div>
 
