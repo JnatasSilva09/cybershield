@@ -28,7 +28,7 @@ Um projeto web informativo criado para apresentar caminhos profissionais na áre
 <br><br>
 
 ### 3. Gráficos Interativos e Tabela Salarial por Cargo
-<img src="./17568b12-c80c-4813-8dc0-783fbefc03.jpg" alt="Gráfico Salarial" width="90%"/>
+<img src="./17568b12-c80c-4813-8dc0-783fbefc036.jpg" alt="Gráfico Salarial e Tabela" width="90%"/>
 
 </div>
 
